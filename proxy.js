@@ -9,6 +9,11 @@ var url = require('url');
 
 var app = express();
 
+app.get('/certificate.cer', function(req, res) {
+    res.setHeader('Content-Type', 'application/x-x509-user-cert');
+    res.send(200, fs.readFileSync('./keys/public.cer'));
+});
+
 app.use(function(req, res, next) {
     var cacheKey = crypto.createHash('md5').update(req.url).digest('hex');
     var folder = path.join('cache', req.protocol + '_' + req.headers.host);
