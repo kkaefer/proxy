@@ -10,7 +10,7 @@ var url = require('url');
 var app = express();
 
 app.use(function(req, res, next) {
-    var cacheKey = new Buffer(req.url).toString('base64').replace(/\//g, '-');
+    var cacheKey = crypto.createHash('md5').update(req.url).digest('hex');
     var folder = path.join('cache', req.protocol + '_' + req.headers.host);
     req.cache = {
         uri: req.protocol + '://' + req.headers.host + req.url,
