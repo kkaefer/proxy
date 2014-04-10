@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var request = require('request');
+var crypto = require('crypto');
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
